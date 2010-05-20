@@ -1,0 +1,31 @@
+Anything Protocol for Download
+==============================
+
+progress line = current '/' total [ ' (' percent '%)' ] [ ' #' comment ] eol
+progress line = percent [ ' #' comment ] eol
+comment line  = '#' comment
+complete line = 'completed ' filename
+fail line     = 'failed ' reason
+filename      = string
+comment       = string
+number        = digit { digit } [ '.' digit { digit } ]
+current       = number
+total         = number
+percent       = number
+eol           = '\n' | '\r'
+space         = ' '
+
+Eg.
+
+./script foobar
+0
+20
+50
+80
+100
+completed foobar.mp4
+
+- 単体で実行しても使える、というのが重要 (テストのしやすさ、流用のしやすさ)
+- 実装言語はなんでもいい
+- 実行前にダウンロード先ディレクトリに cd する。
+-- ダウンローダは相対パスで保存すれば良い
